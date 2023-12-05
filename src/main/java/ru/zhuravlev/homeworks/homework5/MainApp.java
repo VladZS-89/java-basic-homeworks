@@ -1,6 +1,5 @@
 package ru.zhuravlev.homeworks.homework5;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class MainApp {
@@ -9,8 +8,11 @@ public class MainApp {
 
         sumIfElemMoreThanFive(new int[]{1, 4, 5, 7, 9, 10, 11, 31, 44, 3, 2, 12});
 
-        int[] array = {12, 1124, 1451, 151, 161, 6, 16};
-        fillingArrayByN(9, array);
+        int[] arrayOne = {12, 1124, 1451, 151, 161, 6, 16};
+        fillingArrayByN(9, arrayOne);
+
+        int[] arrayTwo = {5, 6, 7, 8, 9};
+        increaseEachElementByN(10, arrayTwo);
 
         whichHalfOfArrayIsBigger(new int[]{15, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5});
     }
@@ -35,6 +37,13 @@ public class MainApp {
     public static void fillingArrayByN(int n, int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             arr[i] = n;
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+
+    public static void increaseEachElementByN(int n, int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] += n;
         }
         System.out.println(Arrays.toString(arr));
     }
