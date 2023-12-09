@@ -7,7 +7,7 @@ public class MainApp {
     public static void main(String[] args) {
         printStringNTimes(5, "привет");
 
-        sumIfElemMoreThanFive(new int[]{1, 4, 5, 7, 9, 10, 11, 31, 44, 3, 2, 12});
+        sumIfElemGreaterThanFive(new int[]{1, 4, 5, 7, 9, 10, 11, 31, 44, 3, 2, 12});
 
         int[] arrayOne = {12, 1124, 1451, 151, 161, 6, 16};
         fillingArrayByN(9, arrayOne);
@@ -19,6 +19,7 @@ public class MainApp {
 
         sumArrays(new int[]{1, 2, 3, 4}, new int[]{5, 6, 7}, new int[]{8, 9});
 
+        findPointEquality(new int[]{5, 6, 7, 3, 7, 6, 5});
         findPointEquality(new int[]{1, 1, 1, 1, 1, 5});
 
         sortArray();
@@ -33,7 +34,7 @@ public class MainApp {
         System.out.println();
     }
 
-    public static void sumIfElemMoreThanFive(int[] arr) {
+    public static void sumIfElemGreaterThanFive(int[] arr) {
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] > 5) {
@@ -60,8 +61,9 @@ public class MainApp {
     public static void whichHalfOfArrayIsBigger(int[] arr) {
         int sumFirstHalfArray = 0;
         int sumSecondHalfArray = 0;
+        int halfLength = arr.length / 2;
         for (int i = 0; i < arr.length; i++) {
-            if (i < arr.length / 2) {
+            if (i < halfLength) {
                 sumFirstHalfArray += arr[i];
             } else {
                 sumSecondHalfArray += arr[i];
@@ -94,22 +96,33 @@ public class MainApp {
         System.out.println("Массив, равный сумме входящих: " + Arrays.toString(result));
     }
 
-    public static void findPointEquality(int[] array) {
-        int sumFirstHalf = array[0];
-        int sumSecondHalf = array[array.length - 1];
-        int count = 0;
-        for (int i = 1; i < array.length; i++) {
-            if (sumFirstHalf > sumSecondHalf) {
-                sumSecondHalf += array[array.length - 1 - i];
-            } else if (sumFirstHalf < sumSecondHalf) {
-                sumFirstHalf += array[i];
-                count++;
-            } else {
-                System.out.println("Точка равенства левой и правой части массива " + Arrays.toString(array) + " между " + count + " и " + (count + 1) + " элементами массива");
+    public static void findPointEquality(int[] ar) {
+        int sumLeft = ar[0];
+        int sumRight = ar[ar.length - 1];
+        int countLeft = 0;
+        int countRight = ar.length - 1;
+        for (int i = 1; i <= ar.length; i++) {
+            if (countLeft == countRight) {
+                System.out.println("В массиве " + Arrays.toString(ar) + " нет точки равенства сумм левой и правой части");
                 return;
+            } else if (sumLeft == sumRight) {
+                if (countRight - countLeft == 1) {
+                    System.out.println("В массиве " + Arrays.toString(ar) + " точка равенства левой и правой частей между "
+                            + countLeft + " и " + countRight + " элементами");
+                    return;
+                }
+                sumLeft += ar[i];
+                sumRight += ar[ar.length - 1 - i];
+                countLeft++;
+                countRight--;
+            } else if (sumLeft > sumRight) {
+                sumRight += ar[ar.length - 1 - i];
+                countRight--;
+            } else {
+                sumLeft += ar[i];
+                countLeft++;
             }
         }
-        System.out.println("Нет точки");
     }
 
     public static void sortArray() {
@@ -151,10 +164,10 @@ public class MainApp {
     private static void reverseArray(int[] array) {
         System.out.println("массив1: " + Arrays.toString(array));
         int x;
-        for (int i = 0; i < array.length/2; i++) {
+        for (int i = 0; i < array.length / 2; i++) {
             x = array[i];
-            array[i] = array[array.length-1-i];
-            array[array.length -1-i] = x;
+            array[i] = array[array.length - 1 - i];
+            array[array.length - 1 - i] = x;
         }
         System.out.println("массив2: " + Arrays.toString(array));
     }
