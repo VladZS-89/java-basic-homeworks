@@ -1,7 +1,5 @@
 package ru.zhuravlev.homeworks.homework5;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -30,7 +28,6 @@ public class MainApp {
         sortArray();
 
         reverseArray(new int[]{1, 2, 3, 4, 5, 6, 7});
-
     }
 
     public static void printStringNTimes(int n, String s) {
