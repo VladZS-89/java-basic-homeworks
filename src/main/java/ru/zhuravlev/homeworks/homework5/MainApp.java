@@ -1,5 +1,7 @@
 package ru.zhuravlev.homeworks.homework5;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -21,10 +23,14 @@ public class MainApp {
 
         findPointEquality(new int[]{5, 6, 7, 3, 7, 6, 5});
         findPointEquality(new int[]{1, 1, 1, 1, 1, 5});
+        System.out.println("        Упрощённое решение задачи        ");
+        findPointEqualityV2(new int[]{5, 6, 7, 3, 7, 6, 5});
+        findPointEqualityV2(new int[]{1, 1, 1, 1, 1, 5});
 
         sortArray();
 
         reverseArray(new int[]{1, 2, 3, 4, 5, 6, 7});
+
     }
 
     public static void printStringNTimes(int n, String s) {
@@ -123,6 +129,22 @@ public class MainApp {
                 countLeft++;
             }
         }
+    }
+
+    public static void findPointEqualityV2(int[] ar) {
+        int sum1 = Arrays.stream(ar).sum();
+        int sum2 = 0;
+        for (int i = 0; i < ar.length; i++) {
+            if (sum2 == sum1) {
+                System.out.println("В массиве " + Arrays.toString(ar) + " точка равенства левой и правой частей между "
+                        + (i - 1) + " и " + i + " элементами");
+                return;
+            } else {
+                sum1 -= ar[i];
+                sum2 += ar[i];
+            }
+        }
+        System.out.println("В массиве " + Arrays.toString(ar) + " нет точки равенства левой и правой части.");
     }
 
     public static void sortArray() {
