@@ -54,7 +54,7 @@ public class Box {
 
 
     public void info() {
-        String openInfo = isOpen() ? "открыта" : "закрыта";
+        String openInfo = open ? "открыта" : "закрыта";
         String itemInfo;
         if (getItemIn() == null) {
             itemInfo = "ничего";
@@ -62,15 +62,15 @@ public class Box {
             itemInfo = getItemIn();
         }
         System.out.println("Размеры коробки:"
-                + "\nдлинна - " + getLength() + "\nширина - " + getWidth() + "\nвысота - " + getHeight()
-                + "\nЦвет коробки: " + getColor()
+                + "\nдлинна - " + length + "\nширина - " + width + "\nвысота - " + height
+                + "\nЦвет коробки: " + color
                 + "\nКоробка открыта/закрыта? - " + openInfo
                 + "\nЧто внутри коробки? - " + itemInfo
         );
     }
 
     public void open() {
-        if (!isOpen()) {
+        if (!open) {
             setOpen(true);
             System.out.println("Открыли коробку");
         } else {
@@ -79,7 +79,7 @@ public class Box {
     }
 
     public void close() {
-        if (isOpen()) {
+        if (open) {
             setOpen(false);
             System.out.println("Закрыли коробку");
         } else {
@@ -88,29 +88,29 @@ public class Box {
     }
 
     public void putItem(String item) {
-        if (isOpen()) {
-            if (itemIn == null) {
-                setItemIn(item);
-                System.out.println("В коробку положили: " + getItemIn());
-            } else {
-                System.out.println("В коробке уже лежит: " + getItemIn()
-                        + "\nСначала освободите коробку.");
-            }
-        } else {
+        if (!open) {
             System.out.println("Сначала откройте коробку.");
+            return;
         }
+        if (itemIn != null) {
+            System.out.println("В коробке уже лежит: " + getItemIn()
+                    + "\nСначала освободите коробку.");
+            return;
+        }
+        setItemIn(item);
+        System.out.println("В коробку положили: " + getItemIn());
     }
 
     public void getItemOut() {
-        if (isOpen()) {
-            if (getItemIn() != null) {
-                System.out.println("Вытащили из коробки: " + getItemIn() + ". Коробка пуста");
-                setItemIn(null);
-            } else {
-                System.out.println("Из коробки нечего вытаскивать, коробка пуста!");
-            }
-        } else {
+        if (!open) {
             System.out.println("Сначала откройте коробку.");
+            return;
         }
+        if (getItemIn() == null) {
+            System.out.println("Из коробки нечего вытаскивать, коробка пуста!");
+            return;
+        }
+        System.out.println("Вытащили из коробки: " + getItemIn() + ". Коробка пуста");
+        setItemIn(null);
     }
 }

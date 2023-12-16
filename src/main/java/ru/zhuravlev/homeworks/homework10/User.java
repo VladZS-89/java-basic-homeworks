@@ -40,9 +40,9 @@ public class User {
     }
 
     public void info() {
-        System.out.println("ФИО: " + getLastName() + " " + getFirstName() + " " + getPatronymic()
-                + "\nГод рождения: " + getYearOfBirth()
-                + "\ne-mail: " + getEmail()
+        System.out.println("ФИО: " + lastName + " " + firstName + " " + patronymic
+                + "\nГод рождения: " + yearOfBirth
+                + "\ne-mail: " + email
                 + "\n===================================");
     }
 }
