@@ -7,7 +7,7 @@ public class Cat extends Animal {
 
     @Override
     public void info() {
-        System.out.println("У кота" + " по кличке " + getName()
-                + " осталось выносливости " + getStamina() + " из 100.");
+        System.out.println("У кота по кличке " + name
+                + " осталось выносливости " + stamina + " из 100.");
     }
 }

@@ -13,20 +13,20 @@ public class Dog extends Animal {
     }
 
     public double swim(int distance) {
-        if (getStamina() < distance * 2) {
-            setStamina(0);
-            System.out.println(getName() + " устал(а) и не может проплыть " + distance + " метров");
+        if (stamina < distance * 2) {
+            stamina = 0;
+            System.out.println(name + " устал(а) и не может проплыть " + distance + " метров");
             return -1;
         } else {
-            setStamina(getStamina() - (distance * 2));
-            System.out.print(getName() + " проплыл(а) " + distance + " метров");
+            stamina = stamina - (distance * 2);
+            System.out.print(name + " проплыл(а) " + distance + " метров");
+            return Math.round((double) distance / speedSwim);
         }
-        return Math.round((double) distance / getSpeedSwim());
     }
 
     @Override
     public void info() {
-        System.out.println("У собаки" + " по кличке " + getName()
-                + " осталось выносливости " + getStamina() + " из 100.");
+        System.out.println("У собаки по кличке " + name
+                + " осталось выносливости " + stamina + " из 100.");
     }
 }
