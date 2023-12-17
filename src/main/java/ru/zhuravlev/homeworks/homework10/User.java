@@ -1,15 +1,15 @@
 package ru.zhuravlev.homeworks.homework10;
 
 public class User {
-    private final String firstName;
     private final String lastName;
+    private final String firstName;
     private final String patronymic;
     private final int yearOfBirth;
     private String email;
 
-    public User(String firstName, String lastName, String patronymic, int yearOfBirth, String email) {
-        this.firstName = firstName;
+    public User(String lastName, String firstName, String patronymic, int yearOfBirth, String email) {
         this.lastName = lastName;
+        this.firstName = firstName;
         this.patronymic = patronymic;
         this.yearOfBirth = yearOfBirth;
         this.email = email;

@@ -1,5 +1,7 @@
 package ru.zhuravlev.homeworks.homework10;
 
+import java.time.LocalDate;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -16,8 +18,10 @@ public class Main {
                 new User("Журавлев", "Владислав", "Сергеевич", 1989, "zhuravlev@mail.ru")
         };
 
+        int yearsDelta = 40;
+        int maxBirthYear = LocalDate.now().minusYears(yearsDelta).getYear();
         for (User user : users) {
-            if (user.getYearOfBirth() < 1983) {
+            if (user.getYearOfBirth() < maxBirthYear) {
                 user.info();
             }
         }
