@@ -1,4 +1,4 @@
-package ru.zhuravlev.homeworks.homework4;
+package ru.zhuravlev.homeworks.homework04;
 
 import java.util.Scanner;
 

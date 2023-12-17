@@ -1,4 +1,4 @@
-package ru.zhuravlev.homeworks.homework7;
+package ru.zhuravlev.homeworks.homework07;
 
 import java.util.Arrays;
 
