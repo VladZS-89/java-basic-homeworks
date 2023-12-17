@@ -1,15 +1,15 @@
 package ru.zhuravlev.homeworks.homework11.animals;
 
-import ru.zhuravlev.homeworks.homework11.Main;
-
 public abstract class Animal {
     protected final String name;
     protected final int speedRun;
+    protected final int speedSwim;
     protected int stamina;
 
-    public Animal(String name, int speedRun) {
+    public Animal(String name, int speedRun, int speedSwim) {
         this.name = name;
         this.speedRun = speedRun;
+        this.speedSwim = speedSwim;
         this.stamina = 100;
     }
 
@@ -21,6 +21,9 @@ public abstract class Animal {
         return speedRun;
     }
 
+    public int getSpeedSwim() {
+        return speedSwim;
+    }
 
     public int getStamina() {
         return stamina;
@@ -34,7 +37,7 @@ public abstract class Animal {
     public double run(int distance) {
         if (stamina < distance) {
             stamina = 0;
-            System.out.println(name + " устал(а)");
+            System.out.println(name + " устал(а) и не может пробежать " + distance + " метров");
             return -1;
         } else {
             stamina = (stamina - distance);
@@ -42,6 +45,8 @@ public abstract class Animal {
             return Math.round((double) distance / speedRun);
         }
     }
+
+    public abstract double swim(int distance);
 
     public abstract void info();
 }

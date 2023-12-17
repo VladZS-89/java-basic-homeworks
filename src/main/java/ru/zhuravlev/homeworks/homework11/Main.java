@@ -20,6 +20,7 @@ public class Main {
         dog.info();
 
         System.out.println(" за " + cat.run(100) + " секунд(ы)");
+        cat.swim(100);
         cat.info();
 
         System.out.println(" за " + horse.swim(20) + " секунд(ы)");

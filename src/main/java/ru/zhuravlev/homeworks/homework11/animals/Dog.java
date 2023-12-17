@@ -1,17 +1,11 @@
 package ru.zhuravlev.homeworks.homework11.animals;
 
 public class Dog extends Animal {
-    private final int speedSwim;
-
     public Dog(String name, int speedRun, int speedSwim) {
-        super(name, speedRun);
-        this.speedSwim = speedSwim;
+        super(name, speedRun, speedSwim);
     }
 
-    public int getSpeedSwim() {
-        return speedSwim;
-    }
-
+    @Override
     public double swim(int distance) {
         if (stamina < distance * 2) {
             stamina = 0;
