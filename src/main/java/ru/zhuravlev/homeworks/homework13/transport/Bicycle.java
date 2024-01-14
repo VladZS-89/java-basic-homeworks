@@ -11,17 +11,27 @@ public class Bicycle implements Transport {
         return driver;
     }
 
+    @Override
     public void setDriver(Human driver) {
         this.driver = driver;
     }
 
     @Override
     public boolean move(int distance, AreaType areaType) {
-        if (driver.getStamina() >= distance && areaType != AreaType.SWAMP) {
-            driver.setStamina(driver.getStamina() - distance);
-            System.out.println("проехал на велосипеде " + distance + " по местности - " + areaType.getArea());
-            return true;
+        if (areaType == AreaType.SWAMP) {
+            System.out.print("По болоту на велосипеде не проехать! ");
+            return false;
         }
-        return false;
+        if (driver.getStamina() < distance) {
+            System.out.print("Сил не хватит на расстояние - " + distance + "! ");
+            return false;
+        }
+        driver.setStamina(driver.getStamina() - distance);
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "велосипеде";
     }
 }

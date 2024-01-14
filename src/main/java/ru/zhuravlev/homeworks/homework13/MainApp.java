@@ -26,16 +26,18 @@ public class MainApp {
         oleg.move(30, AreaType.PLAIN);
         oleg.move(30, AreaType.FOREST);
         oleg.move(30, AreaType.SWAMP);
+        oleg.move(100, AreaType.FOREST);
         oleg.getOffTransport();
         oleg.getOnTransport(gelik);
-        oleg.move(30, AreaType.PLAIN);
         oleg.move(30, AreaType.FOREST);
         oleg.move(30, AreaType.SWAMP);
+        oleg.move(30, AreaType.PLAIN);
+        oleg.move(100, AreaType.PLAIN);
         oleg.getOffTransport();
         oleg.getOnTransport(vezdehod);
-        oleg.move(30, AreaType.PLAIN);
         oleg.move(30, AreaType.FOREST);
         oleg.move(30, AreaType.SWAMP);
+        oleg.move(100, AreaType.PLAIN);
         oleg.getOffTransport();
     }
 }

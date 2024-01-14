@@ -7,10 +7,6 @@ public class Rover implements Transport {
     private int petrol;
     private Human driver;
 
-    public Human getDriver() {
-        return driver;
-    }
-
     public Rover(int petrol) {
         this.petrol = petrol;
     }
@@ -23,13 +19,27 @@ public class Rover implements Transport {
         this.petrol = petrol;
     }
 
+    public Human getDriver() {
+        return driver;
+    }
+
+    @Override
+    public void setDriver(Human driver) {
+        this.driver = driver;
+    }
+
     @Override
     public boolean move(int distance, AreaType areaType) {
-        if (petrol >= distance) {
-            petrol -= distance;
-            System.out.println("проехал на вездеходе " + distance + " по местности - " + areaType.getArea());
-            return true;
+        if (petrol < distance) {
+            System.out.print("Бензина не хватит на расстояние - " + distance + "! ");
+            return false;
         }
-        return false;
+        petrol -= distance;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "вездеходе";
     }
 }

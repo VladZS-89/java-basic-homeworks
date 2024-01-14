@@ -30,22 +30,28 @@ public class Human {
     }
 
     public void move(int distance, AreaType areaType) {
-        if (currentTransport == null && stamina >= distance) {
-            stamina -= distance;
-            System.out.println(name + " прошёл пешком расстояние - " + distance + ", по местности - " + areaType.getArea());
-        } else if (currentTransport == null) {
-            System.out.println(name + " не осилил расстояние - " + distance);
+        String distAndArea = " расстояние - " + distance + ", по локации - " + areaType.getArea();
+        if (currentTransport == null) {
+            if (stamina >= distance) {
+                stamina -= distance;
+                System.out.println(name + " прошёл пешком" + distAndArea);
+            } else {
+                System.out.println(name + " не осилил расстояние - " + distance);
+            }
+            return;
+        }
+        if (currentTransport.move(distance, areaType)) {
+            System.out.println(name + " проехал на " + currentTransport + distAndArea);
         } else {
-            System.out.print(name + " " + currentTransport.move(distance, areaType));
+            System.out.println(name + " не смог проехать на " + currentTransport + distAndArea);
         }
     }
 
     public void getOnTransport(Transport transport) {
         if (currentTransport == null) {
-            if (transport.getClass() == Bicycle.class) {
-                ((Bicycle) transport).setDriver(this);
-            }
+            transport.setDriver(this);
             currentTransport = transport;
+            System.out.println(name + " на " + currentTransport + ".");
         } else {
             System.out.println(name + " сначала должен спешиться!");
         }
