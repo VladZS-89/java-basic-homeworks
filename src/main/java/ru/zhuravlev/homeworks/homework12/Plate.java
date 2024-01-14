@@ -19,20 +19,19 @@ public class Plate {
 
     public void addFood(int foodAmount) {
         System.out.println("Докладываем в тарелку " + foodAmount + " еды");
-        currentFoodAmount += foodAmount;
-        int ExtraFood = maxFoodAmount - currentFoodAmount;
-        if (ExtraFood < 0) {
+        if (currentFoodAmount + foodAmount > maxFoodAmount) {
+            System.out.println("Тарелка полна. Лишние " + (currentFoodAmount + foodAmount - maxFoodAmount) + " еды");
             currentFoodAmount = maxFoodAmount;
-            System.out.println("Тарелка полна. Лишние " + (ExtraFood * -1) + " еды");
+        } else {
+            currentFoodAmount += foodAmount;
         }
     }
 
     public boolean reduceFood(int foodAmount) {
-        currentFoodAmount -= foodAmount;
-        if (currentFoodAmount < 0) {
-            currentFoodAmount = 0;
+        if (currentFoodAmount - foodAmount < 0) {
             return false;
         } else {
+            currentFoodAmount -= foodAmount;
             return true;
         }
     }

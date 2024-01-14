@@ -19,13 +19,12 @@ public class Cat {
 
     public void eat(Plate plate) {
         int eatTillFullAmount = 9;
-        if (plate.getCurrentFoodAmount() < eatTillFullAmount) {
-            appetite = false;
-            System.out.println(name + " остался голодным");
-        } else {
-            plate.reduceFood(eatTillFullAmount);
+        if (plate.reduceFood(eatTillFullAmount)) {
             appetite = true;
             System.out.println(name + " наелся.");
+        } else {
+            appetite = false;
+            System.out.println(name + " остался голодным");
         }
     }
 
