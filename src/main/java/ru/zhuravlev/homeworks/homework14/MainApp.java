@@ -30,19 +30,20 @@ public class MainApp {
 
     public static void convertToIntAndSumStringArray(String[][] strArr) throws AppArrayDataException, AppArraySizeException {
 
-        try {
-            int sum = 0;
-            for (String[] el: strArr) {
-                for (String str: el) {
-                    sum += Integer.parseInt(str);
+        int sum = 0;
+        for (int i = 0; i < strArr.length; i++) {
+            for (int j = 0; j < strArr[i].length; j++) {
+                if (i > 3 || j > 3) {
+                    throw new AppArraySizeException();
+                }
+                try {
+                    sum += Integer.parseInt(strArr[i][j]);
+                } catch (AppArrayDataException exception) {
+                    exception.getMessage("[ " + i +  " ] [" + j + " ] " +
+                            "элемент массива не удалось преобразовать в число");
                 }
             }
-            System.out.println("Сумма элементов массива = " + sum);
-        } catch (AppArrayDataException exData) {
-            exData.getMessage();
-        } catch (AppArraySizeException exSize) {
-            exSize.getMessage();
         }
-
+        System.out.println("Сумма элементов массива = " + sum);
     }
 }
