@@ -10,10 +10,10 @@ public class MainApp {
         };
 
         String[][] strings2 = {
-                {"4", "6", "2", "7"},
-                {"2", "3", "9", "5", "11"},
-                {"3", "8", "1", "6"},
-                {"1", "2", "9", "8"}
+                {"40", "60", "20", "70"},
+                {"20", "30", "90", "50"},
+                {"30", "80", "10", "60"},
+                {"10", "20", "90", "80", "100"}
         };
 
         String[][] strings3 = {
@@ -28,8 +28,7 @@ public class MainApp {
         convertToIntAndSumStringArray(strings3);
     }
 
-    public static void convertToIntAndSumStringArray(String[][] strArr) throws AppArrayDataException, AppArraySizeException {
-
+    public static void convertToIntAndSumStringArray(String[][] strArr) {
         int sum = 0;
         for (int i = 0; i < strArr.length; i++) {
             for (int j = 0; j < strArr[i].length; j++) {
@@ -38,9 +37,8 @@ public class MainApp {
                 }
                 try {
                     sum += Integer.parseInt(strArr[i][j]);
-                } catch (AppArrayDataException exception) {
-                    exception.getMessage("[ " + i +  " ] [" + j + " ] " +
-                            "элемент массива не удалось преобразовать в число");
+                } catch (NumberFormatException exception) {
+                    throw new AppArrayDataException(i, j, strArr);
                 }
             }
         }
