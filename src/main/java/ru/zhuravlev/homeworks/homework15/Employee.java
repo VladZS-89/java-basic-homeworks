@@ -2,8 +2,17 @@ package ru.zhuravlev.homeworks.homework15;
 
 import java.util.Objects;
 
+/**
+ * Сотрудники
+ */
 public class Employee {
+    /**
+     * Имя сотрудника
+     */
     private final String name;
+    /**
+     * Возраст сотрудника
+     */
     private int age;
 
     public Employee(String name, int age) {

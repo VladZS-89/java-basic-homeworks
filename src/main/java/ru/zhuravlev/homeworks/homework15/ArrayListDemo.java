@@ -22,7 +22,7 @@ public class ArrayListDemo {
             min = max;
             max = temp;
         }
-        for (int i = min; i < max; i++) {
+        for (int i = min; i <= max; i++) {
             sortedIntList.add(i);
         }
         return sortedIntList;
@@ -35,7 +35,6 @@ public class ArrayListDemo {
      * @return сумма чисел из списка, которые больше 5
      */
     public static long sumListValuesIfMoreThenFive(List<Integer> integerList) {
-        System.out.print("Список целых чисел: " + integerList + "\nСумма чисел, которые больше 5 = ");
         long sum = 0;
         for (Integer i : integerList) {
             if (i > 5) {
@@ -53,14 +52,14 @@ public class ArrayListDemo {
      */
     public static void fillingArrayByNumber(int n, List<Integer> intList) {
         if (intList.isEmpty()) {
-            System.out.println("Передан пустой список");
+            System.out.println("Передан пустой список\n");
             return;
         }
-        System.out.println(intList);
+        System.out.print("Переданный список чисел: " + intList + "\nИзменённый список чисел: ");
         for (int i = 0; i < intList.size(); i++) {
             intList.set(i, n);
         }
-        System.out.println(intList);
+        System.out.println(intList + "\n");
     }
 
     /**
@@ -75,9 +74,9 @@ public class ArrayListDemo {
             for (int i = 0; i < intList.size(); i++) {
                 intList.set(i, intList.get(i) + n);
             }
-            System.out.println(". Увеличили каждый элемент на " + n + ". Получили: " + intList);
+            System.out.println(". Увеличили каждый элемент на " + n + ". Получили: " + intList + "\n");
         } else {
-            System.out.println("Передан пустой список");
+            System.out.println("Передан пустой список" + "\n");
         }
     }
 
