@@ -13,16 +13,24 @@ public class MainApp {
         List<Integer> integerList1 = rndIntegers(10);
         // 2. Выводим сумму элементов списка, значение которых больше 5
         System.out.println("Список целых чисел: " + integerList1 + " Сумма чисел, которые больше 5 = " +
-                ArrayListDemo.sumListValuesIfMoreThenFive(integerList1)  + "\n"
+                ArrayListDemo.sumListValuesIfMoreThenFive(integerList1) + "\n"
         );
 
         List<Integer> integerList2 = rndIntegers(10);
         // 3. метод должен переписать каждую заполненную ячейку списка переданным в аргумент числом
-        ArrayListDemo.fillingArrayByNumber(5, integerList2);
+        try {
+            ArrayListDemo.fillingArrayByNumber(5, integerList2);
+        } catch (RuntimeException e) {
+            System.out.println(e + "\n");
+        }
 
         List<Integer> integerList3 = rndIntegers(10);
         // 4. метод, увеличивающий каждый элемент списка на указанное число
-        ArrayListDemo.increaseArrayValuesByNumber(5, integerList3);
+        try {
+            ArrayListDemo.increaseArrayValuesByNumber(5, integerList3);
+        } catch (RuntimeException e) {
+            System.out.println(e + "\n");
+        }
 
         List<Employee> employeeList = new ArrayList<>();
         employeeList.add(new Employee("Николай", 55));
@@ -31,7 +39,11 @@ public class MainApp {
         employeeList.add(new Employee("Александра", 22));
 
         // 5. метод, возвращающий список имен сотрудников
-        System.out.println(ArrayListDemo.getEmployeeNames(employeeList) + "\n");
+        try {
+            System.out.println(ArrayListDemo.getEmployeeNames(employeeList) + "\n");
+        } catch (RuntimeException e) {
+            System.out.println(e + "\n");
+        }
 
         // 6. метод, возвращающий список сотрудников, возраст которых больше либо равен указанному аргументу
         try {

@@ -1,13 +1,14 @@
 package ru.zhuravlev.homeworks.homework15;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * Класс для теста свойств списка ArrayList
  */
 public class ArrayListDemo {
+    private static final int MIN_EMPLOYEE_AGE = 18;
+
     /**
      * Метод создаёт сортированный по возрастанию список чисел с шагом 1 в диапазоне заданных значений.
      *
@@ -18,9 +19,7 @@ public class ArrayListDemo {
     public static List<Integer> sort(int min, int max) {
         List<Integer> sortedIntList = new ArrayList<>();
         if (min > max) {
-            int temp = min;
-            min = max;
-            max = temp;
+            return sort(max, min);
         }
         for (int i = min; i <= max; i++) {
             sortedIntList.add(i);
@@ -31,12 +30,12 @@ public class ArrayListDemo {
     /**
      * Метод суммирующий числа из списка, которые больше 5
      *
-     * @param integerList список целых чисел
+     * @param intList список целых чисел
      * @return сумма чисел из списка, которые больше 5
      */
-    public static long sumListValuesIfMoreThenFive(List<Integer> integerList) {
+    public static long sumListValuesIfMoreThenFive(List<Integer> intList) {
         long sum = 0;
-        for (Integer i : integerList) {
+        for (Integer i : intList) {
             if (i > 5) {
                 sum += i;
             }
@@ -51,10 +50,7 @@ public class ArrayListDemo {
      * @param intList список целых чисел
      */
     public static void fillingArrayByNumber(int n, List<Integer> intList) {
-        if (intList.isEmpty()) {
-            System.out.println("Передан пустой список\n");
-            return;
-        }
+        checkEmptyList(intList);
         System.out.print("Переданный список чисел: " + intList + "\nИзменённый список чисел: ");
         for (int i = 0; i < intList.size(); i++) {
             intList.set(i, n);
@@ -69,15 +65,12 @@ public class ArrayListDemo {
      * @param intList список целых чисел
      */
     public static void increaseArrayValuesByNumber(int n, List<Integer> intList) {
+        checkEmptyList(intList);
         System.out.print("Заданный массив: " + intList);
-        if (!intList.isEmpty()) {
-            for (int i = 0; i < intList.size(); i++) {
-                intList.set(i, intList.get(i) + n);
-            }
-            System.out.println(". Увеличили каждый элемент на " + n + ". Получили: " + intList + "\n");
-        } else {
-            System.out.println("Передан пустой список" + "\n");
+        for (int i = 0; i < intList.size(); i++) {
+            intList.set(i, intList.get(i) + n);
         }
+        System.out.println(". Увеличили каждый элемент на " + n + ". Получили: " + intList + "\n");
     }
 
     /**
@@ -87,16 +80,12 @@ public class ArrayListDemo {
      * @return список имён сотрудников
      */
     public static List<String> getEmployeeNames(List<Employee> employees) {
-        if (!employees.isEmpty()) {
-            List<String> nameList = new ArrayList<>();
-            for (Employee employee : employees) {
-                nameList.add(employee.getName());
-            }
-            return nameList;
-        } else {
-            System.out.println("Список сотрудников пуст");
-            return Collections.emptyList();
+        checkEmptyList(employees);
+        List<String> nameList = new ArrayList<>();
+        for (Employee employee : employees) {
+            nameList.add(employee.getName());
         }
+        return nameList;
     }
 
     /**
@@ -107,8 +96,9 @@ public class ArrayListDemo {
      * @return список сотрудников не менее минимального возраста
      */
     public static List<Employee> getEmployeesFilteredByAge(List<Employee> employees, int minAge) {
-        if (employees.isEmpty() || minAge < 0) {
-            throw new RuntimeException("В метод getEmployeesFilteredByAge переданы некорректные параметры");
+        checkEmptyList(employees);
+        if (minAge < MIN_EMPLOYEE_AGE) {
+            throw new RuntimeException("Минимальный возраст сотрудника не может быть меньше 18 лет");
         }
         List<Employee> employeesFilteredByAge = new ArrayList<>();
         for (Employee employee : employees) {
@@ -123,12 +113,13 @@ public class ArrayListDemo {
      * Метод проверяет не превышает ли средний возраст сотрудников указанный минимальный
      *
      * @param employees     список сотрудников
-     * @param minAverageAge минимальный средний возраст
+     * @param minAverageAge минимальный средний возраст сотрудников
      * @return true, если средний возраст сотрудников больше указанного; false, если - меньше
      */
     public static boolean isMoreAverageMinAge(List<Employee> employees, int minAverageAge) {
-        if (employees.isEmpty() || minAverageAge < 0) {
-            throw new RuntimeException("В метод isMoreAverageMinAge переданы некорректные параметры");
+        checkEmptyList(employees);
+        if (minAverageAge < MIN_EMPLOYEE_AGE) {
+            throw new RuntimeException("Минимальный средний возраст сотрудников не может быть меньше 18 лет");
         }
         int sumAge = 0;
         for (Employee employee : employees) {
@@ -145,17 +136,24 @@ public class ArrayListDemo {
      * @return самый молодой сотрудник
      */
     public static Employee getYoungestEmployee(List<Employee> employees) {
-        if (employees.isEmpty()) {
-            throw new RuntimeException("В метод getYoungestEmployee переданы некорректные параметры");
-        }
-        Employee youngestEmployee = null;
-        int minAge = Integer.MAX_VALUE;
-        for (Employee employee : employees) {
-            if (employee.getAge() < minAge) {
-                minAge = employee.getAge();
-                youngestEmployee = employee;
+        checkEmptyList(employees);
+        Employee youngestEmployee = employees.get(0);
+        for (int i = 1; i < employees.size(); i++) {
+            if (employees.get(i).getAge() < youngestEmployee.getAge()) {
+                youngestEmployee = employees.get(i);
             }
         }
         return youngestEmployee;
+    }
+
+    /**
+     * Метод выкидывает RuntimeException, если передан пустой список
+     *
+     * @param list список
+     */
+    private static <T> void checkEmptyList(List<T> list) {
+        if (list.isEmpty()) {
+            throw new RuntimeException("В метод передан пустой список");
+        }
     }
 }
