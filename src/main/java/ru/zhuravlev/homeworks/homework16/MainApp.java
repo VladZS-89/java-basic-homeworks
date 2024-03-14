@@ -1,7 +1,5 @@
 package ru.zhuravlev.homeworks.homework16;
 
-import java.util.HashMap;
-
 public class MainApp {
     public static void main(String[] args) {
         PhoneBook phoneBook = new PhoneBook();
