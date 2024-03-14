@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class MainApp {
     public static void main(String[] args) {
-        PhoneBook phoneBook = new PhoneBook(new HashMap<>());
+        PhoneBook phoneBook = new PhoneBook();
 
         phoneBook.add("Журавлев Владислав", 84957773322L);
         System.out.println(phoneBook.find("Журавлев Владислав "));

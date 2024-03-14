@@ -8,8 +8,8 @@ import java.util.*;
 public class PhoneBook {
     private final Map<String, Set<Long>> phoneMap;
 
-    public PhoneBook(Map<String, Set<Long>> phoneMap) {
-        this.phoneMap = phoneMap;
+    public PhoneBook() {
+        this.phoneMap = new HashMap<>();
     }
 
     /**
