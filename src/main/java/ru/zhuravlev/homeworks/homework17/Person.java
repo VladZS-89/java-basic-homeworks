@@ -34,10 +34,6 @@ public class Person {
         return id;
     }
 
-    public static Long getCount() {
-        return count;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,7 +44,7 @@ public class Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, position);
+        return Objects.hash(name, position, id);
     }
 
     @Override
