@@ -10,13 +10,14 @@ public class MainApp {
     public static void main(String[] args) {
         MainApp mainApp = new MainApp();
         ExecutorService executorService = Executors.newFixedThreadPool(3);
-        executorService.execute(() -> {
-            for (int i = 0; i < 5; i++) {
-                mainApp.printA();
-                mainApp.printB();
-                mainApp.printC();
-            }
-        });
+
+        for (int i = 0; i < 5; i++) {
+            executorService.execute(() -> {
+                new Thread(() -> mainApp.printA()).start();
+                new Thread(() -> mainApp.printB()).start();
+                new Thread(() -> mainApp.printC()).start();
+            });
+        }
         executorService.shutdown();
     }
 
