@@ -9,9 +9,9 @@ public class MainApp {
     private static final Logger logger = LogManager.getLogger(MainApp.class.getName());
 
     public static void main(String[] args) {
-        logger.info("Новый массив " + Arrays.toString(afterUnit(new int[]{1, 2, 1, 2, 2, 2, 2})));
-//        System.out.println("afterUnit(new int[]{}) = " + Arrays.toString(afterUnit(new int[]{1, 2, 1, 2, 2, 2, 2})));
-        System.out.println("afterUnit(new int[]{}) = " + afterUnit(new int[]{2, 2, 2}));
+        logger.trace("Кейс с результатом в виде пустого массива: {}", afterUnit(new int[]{1, 2, 1}));
+        logger.trace("Новый массив: {}", afterUnit(new int[]{1, 2, 1, 2, 2, 2, 2}));
+        logger.error("Выбрасываем ошибку {}", afterUnit(new int[]{2, 2, 2}));
     }
 
     public static int[] afterUnit(int[] arr) {
@@ -24,17 +24,28 @@ public class MainApp {
             }
         }
         if (!flag) {
-            throw new RuntimeException("нет единицв массиве: " + Arrays.toString(arr));
+            throw new RuntimeException("нет единиц в массиве: " + Arrays.toString(arr));
+        }
+        if (indexFlag == arr.length - 1) {
+            return new int[]{};
         }
         return Arrays.copyOfRange(arr, indexFlag + 1, arr.length);
     }
 
     public static boolean checkArr(int[] arr) {
-        for (int j : arr) {
-            if (j != 1 || j != 2) {
+        boolean flagOne = false;
+        boolean flagTwo = false;
+        for (int k : arr) {
+            if (k != 1 && k != 2) {
                 return false;
             }
+            if (k == 1) {
+                flagOne = true;
+            }
+            if (k == 2) {
+                flagTwo = true;
+            }
         }
-        return true;
+        return flagOne && flagTwo;
     }
 }
